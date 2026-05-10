@@ -38,11 +38,24 @@ layout: default
   flex-direction: column;
 }
 
+.post-title {
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1.3;
+  margin-bottom: 0.5rem;
+  color: var(--fg);
+}
+
+.post-card:hover .post-title {
+  color: var(--accent);
+  transition: color 0.3s ease;
+}
+
 .post-meta {
   font-family: var(--mono);
   font-size: 0.65rem;
   color: var(--fg-dim);
-  margin-bottom: 0.8rem;
+  margin-bottom: 1rem;
   display: flex;
   align-items: center;
   gap: 0.8rem;
@@ -50,22 +63,26 @@ layout: default
   opacity: 0.75;
 }
 
-.post-title {
-  font-size: 1.2rem;
-  font-weight: 500;
-  line-height: 1.3;
-  margin-bottom: 0.8rem;
-  color: var(--fg);
-}
-
 .post-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.4rem;
   margin-bottom: 1.5rem;
 }
 
+.post-tags .tag {
+  font-size: 0.55rem !important;
+}
+
 /* Image with corner brackets */
+.post-image-wrapper {
+  position: relative;
+  width: calc(100% + 40px);
+  margin-left: -20px;
+  margin-right: -20px;
+  padding: 20px;
+}
+
 .post-image {
   position: relative;
   width: 100%;
@@ -79,7 +96,6 @@ layout: default
   overflow: hidden;
   flex-shrink: 0;
   border-radius: 2px;
-  padding: 15px;
 }
 
 .post-image img {
@@ -88,9 +104,9 @@ layout: default
   object-fit: cover;
 }
 
-/* Corner brackets only on image */
-.post-image::before,
-.post-image::after {
+/* Corner brackets on wrapper */
+.post-image-wrapper::before,
+.post-image-wrapper::after {
   content: '';
   position: absolute;
   width: 20px;
@@ -98,25 +114,28 @@ layout: default
   pointer-events: none;
 }
 
-.post-image::before {
+.post-image-wrapper::before {
   top: 0;
   left: 0;
   border-top: 2px solid var(--accent);
   border-left: 2px solid var(--accent);
 }
 
-.post-image::after {
+.post-image-wrapper::after {
   top: 0;
   right: 0;
   border-top: 2px solid var(--accent);
   border-right: 2px solid var(--accent);
 }
 
-/* Bottom corner brackets */
+/* Bottom corners */
 .post-image-bottom {
-  position: relative;
-  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
   height: 20px;
+  pointer-events: none;
 }
 
 .post-image-bottom::before,
@@ -125,7 +144,6 @@ layout: default
   position: absolute;
   width: 20px;
   height: 20px;
-  pointer-events: none;
 }
 
 .post-image-bottom::before {
@@ -164,15 +182,8 @@ layout: default
 .archive-link:hover {
   color: var(--accent);
 }
-</style>
+</style>h2 class="post-title">{{ post.title }}</h2>
 
-<section class="posts">
-  <div class="posts-header">Recent Dispatches</div>
-
-  <div class="posts-grid">
-    {% for post in site.posts limit: 3 %}
-      <a href="{{ post.url }}" class="post-card">
-        <div class="post-card-inner">
           <div class="post-meta">
             <span>{{ post.date | date: "%Y.%m.%d" }}</span>
 
@@ -187,12 +198,21 @@ layout: default
             {% endif %}
           </div>
 
-          <h2 class="post-title">{{ post.title }}</h2>
-
           {% if post.tags %}
             <div class="post-tags">
               {% for tag in post.tags %}
                 <span class="tag">{{ tag | upcase }}</span>
+              {% endfor %}
+            </div>
+          {% endif %}
+
+          <div class="post-image-wrapper">
+            <div class="post-image">
+              <!-- Image placeholder or actual image would go here -->
+              Image
+            </div>
+            <div class="post-image-bottom"></div>
+          | upcase }}</span>
               {% endfor %}
             </div>
           {% endif %}
