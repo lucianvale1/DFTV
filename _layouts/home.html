@@ -187,14 +187,7 @@ layout: default
 
 .post-image-bottom::after {
   bottom: 0;
-  right: 0;hero">
-    <div class="posts-hero-number">{{ site.posts | size }}</div>
-    <div class="posts-hero-text">
-      <strong>Dispatches</strong> from the Vale. A running count of field observations, cultural artifacts, and insights gathered throughout my travels.
-    </div>
-  </div>
-
-  <div class="posts-
+  right: 0;
   border-bottom: 2px solid var(--accent);
   border-right: 2px solid var(--accent);
 }
@@ -225,6 +218,13 @@ layout: default
 
 <section class="posts">
   <div class="posts-header">Recent Dispatches</div>
+
+  <div class="posts-hero">
+    <div class="posts-hero-number">{{ site.posts | size }}</div>
+    <div class="posts-hero-text">
+      <strong>Dispatches</strong> from the Vale. A running count of field observations, cultural artifacts, and insights gathered throughout my travels.
+    </div>
+  </div>
 
   <div class="posts-grid">
     {% for post in site.posts limit: 3 %}
