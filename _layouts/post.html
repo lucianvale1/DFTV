@@ -184,6 +184,12 @@ layout: default
   }
 </style>
 
+{% if page.image %}
+<div class="post-full-image">
+  <img src="{{ page.image }}" alt="{{ page.title }}">
+</div>
+{% endif %}
+
 <article>
   <div class="article-header">
     <div class="article-top-row">
@@ -214,12 +220,6 @@ layout: default
     {% endif %}
   </div>
 
-  {% if page.image %}
-  <div class="post-full-image">
-    <img src="{{ page.image }}" alt="{{ page.title }}">
-  </div>
-  {% endif %}
-  
   <div class="article-content">
     {{ content }}
   </div>
