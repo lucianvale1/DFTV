@@ -6,6 +6,8 @@ location: LA
 dispatch_id: "0003"
 tags: [example, test]
 dispatch_number: "03"
+image: /assets/images/touch.jpg
+
 ---
 
 This is to show stevanie how _layouts/post.html works.
