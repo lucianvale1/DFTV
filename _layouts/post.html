@@ -288,8 +288,10 @@ layout: default
   
   <div class="article-image-wrapper">
     <div class="article-image">
-      <!-- Image placeholder or actual image would go here -->
-      Image
+      {% if page.image %}
+        <img src="{{ page.image }}" alt="{{ page.title }}">
+      {% endif %}
+        Image
     </div>
     <div class="article-image-bottom"></div>
   </div>

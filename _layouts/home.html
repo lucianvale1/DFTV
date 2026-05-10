@@ -220,7 +220,10 @@ layout: default
   <div class="posts-header">Recent Dispatches</div>
 
   <div class="posts-hero">
-    <div class="posts-hero-number">{{ site.posts | size }}</div>
+    <div class="posts-hero-number">
+      {% assign count = site.posts | size %}
+      {% if count < 10 %}0{{ count }}{% else %}{{ count }}{% endif %}
+    </div>
     <div class="posts-hero-text">
       <strong>Dispatches</strong> from the Vale. A running count of field observations, cultural artifacts, and insights gathered throughout my travels.
     </div>
@@ -256,8 +259,11 @@ layout: default
 
           <div class="post-image-wrapper">
             <div class="post-image">
-              <!-- Image placeholder or actual image would go here -->
-              Image
+              {% if post.image %}
+                <img src="{{ post.image }}" alt="{{ post.title }}">
+              {% else %}
+                  Image
+              {% endif %}
             </div>
             <div class="post-image-bottom"></div>
           </div>
