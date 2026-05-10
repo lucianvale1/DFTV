@@ -138,6 +138,92 @@ layout: default
     text-transform: uppercase;
   }
 
+  /* Image with corner brackets */
+  .article-image-wrapper {
+    position: relative;
+    width: calc(100% + 20px);
+    margin-left: -10px;
+    margin-right: -10px;
+    margin-bottom: 3rem;
+    padding: 10px;
+  }
+
+  .article-image {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    background: linear-gradient(135deg, rgba(255, 107, 53, 0.1), rgba(255, 107, 53, 0.05));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--fg-dim);
+    font-size: 0.8rem;
+    overflow: hidden;
+    border-radius: 2px;
+  }
+
+  .article-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Corner brackets on wrapper */
+  .article-image-wrapper::before,
+  .article-image-wrapper::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    pointer-events: none;
+  }
+
+  .article-image-wrapper::before {
+    top: 0;
+    left: 0;
+    border-top: 2px solid var(--accent);
+    border-left: 2px solid var(--accent);
+  }
+
+  .article-image-wrapper::after {
+    top: 0;
+    right: 0;
+    border-top: 2px solid var(--accent);
+    border-right: 2px solid var(--accent);
+  }
+
+  /* Bottom corners */
+  .article-image-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 20px;
+    pointer-events: none;
+  }
+
+  .article-image-bottom::before,
+  .article-image-bottom::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+  }
+
+  .article-image-bottom::before {
+    bottom: 0;
+    left: 0;
+    border-bottom: 2px solid var(--accent);
+    border-left: 2px solid var(--accent);
+  }
+
+  .article-image-bottom::after {
+    bottom: 0;
+    right: 0;
+    border-bottom: 2px solid var(--accent);
+    border-right: 2px solid var(--accent);
+  }
+
           .footer-bottom {
             display: flex;
             flex-direction: column;
@@ -199,6 +285,14 @@ layout: default
           </div>
         {% endif %}
       </div>
+  
+  <div class="article-image-wrapper">
+    <div class="article-image">
+      <!-- Image placeholder or actual image would go here -->
+      Image
+    </div>
+    <div class="article-image-bottom"></div>
+  </div>
   
   <div class="article-content">
     {{ content }}

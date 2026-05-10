@@ -7,6 +7,38 @@ layout: default
   display: none;
 }
 
+/* Hero section */
+.posts-hero {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 4rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.posts-hero-number {
+  font-size: 5rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  line-height: 1;
+  color: var(--fg);
+  opacity: 0.85;
+}
+
+.posts-hero-text {
+  font-family: var(--mono);
+  font-size: 0.9rem;
+  color: var(--fg-dim);
+  line-height: 1.6;
+}
+
+.posts-hero-text strong {
+  color: var(--fg);
+  font-weight: 500;
+}
+
 .posts-grid {
   display: flex;
   flex-direction: column;
@@ -77,10 +109,10 @@ layout: default
 /* Image with corner brackets */
 .post-image-wrapper {
   position: relative;
-  width: calc(100% + 40px);
-  margin-left: -20px;
-  margin-right: -20px;
-  padding: 20px;
+  width: calc(100% + 20px);
+  margin-left: -10px;
+  margin-right: -10px;
+  padding: 10px;
 }
 
 .post-image {
@@ -155,7 +187,14 @@ layout: default
 
 .post-image-bottom::after {
   bottom: 0;
-  right: 0;
+  right: 0;hero">
+    <div class="posts-hero-number">{{ site.posts | size }}</div>
+    <div class="posts-hero-text">
+      <strong>Dispatches</strong> from the Vale. A running count of field observations, cultural artifacts, and insights gathered throughout my travels.
+    </div>
+  </div>
+
+  <div class="posts-
   border-bottom: 2px solid var(--accent);
   border-right: 2px solid var(--accent);
 }
