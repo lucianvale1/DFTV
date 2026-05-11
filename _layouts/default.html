@@ -11,6 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
   <script>
     if (localStorage.getItem('theme') === 'agartha') {
@@ -26,6 +27,7 @@
       --accent: #ff4400;
       --border: #1e1e1e;
       --tag-bg: #1e1e1e;
+      --bracket: #ffffff;
       --mono: 'IBM Plex Mono', monospace;
       --sans: 'IBM Plex Sans', sans-serif;
     }
@@ -37,6 +39,7 @@
       --accent: #ff4400;
       --border: #d4d2c8;
       --tag-bg: var(--accent);
+      --bracket: #111111;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -63,18 +66,33 @@
 
     header {
       border-bottom: 4px solid var(--accent);
-      padding: 1rem 2rem;
-      position: sticky;
+      padding: 0 2rem;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      position: fixed;
       top: 0;
+      left: 0;
+      right: 0;
       background: #111111;
-      z-index: 100;
+      z-index: 1000;
+      transform: translateY(0);
+      transition: transform 0.3s ease;
+    }
+
+    header.header-hidden {
+      transform: translateY(-100%);
+    }
+
+    main {
+      padding-top: 4rem;
     }
 
     .site-title {
-      font-family: var(--mono);
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.15em;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: clamp(0.75rem, 1.2vw, 0.9rem);
+      font-weight: 500;
+      letter-spacing: 0.05em;
       text-transform: uppercase;
       color: #ffffff;
       text-decoration: none;
@@ -82,10 +100,16 @@
 
     .site-title:hover { color: var(--accent); }
 
+    .tilt-char {
+      display: inline-block;
+      transform-origin: center;
+    }
+
     main {
       max-width: 1000px;
       margin: 0 auto;
       padding: 4rem 3rem;
+      padding-top: calc(4rem + 60px);
     }
 
         .hero {
@@ -244,7 +268,7 @@
 <body>
 
 <header>
-  <a href="/" class="site-title">Dispatches from the Vale</a>
+  <a href="/" class="site-title"><span class="tilt-char">D</span><span class="tilt-char">F</span><span class="tilt-char">T</span><span class="tilt-char">V</span></a>
 </header>
 
 <main>
@@ -288,6 +312,24 @@
 </footer>
 
 <script>
+document.querySelectorAll('.tilt-char').forEach(char => {
+  const angle = Math.random() * 20 - 10;
+  char.style.transform = `rotate(${angle}deg)`;
+});
+
+const header = document.querySelector('header');
+let lastScrollY = window.scrollY;
+
+window.addEventListener('scroll', () => {
+  const currentScrollY = window.scrollY;
+  if (currentScrollY > lastScrollY && currentScrollY > 60) {
+    header.classList.add('header-hidden');
+  } else {
+    header.classList.remove('header-hidden');
+  }
+  lastScrollY = currentScrollY;
+}, { passive: true });
+
 const root = document.documentElement;
 
 function updateToggles() {
