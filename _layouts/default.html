@@ -11,16 +11,30 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
-  
+
+  <script>
+    if (localStorage.getItem('theme') === 'agartha') {
+      document.documentElement.classList.add('agartha');
+    }
+  </script>
+
   <style>
     :root {
-      --bg: #121212;
-      --fg: #f2f0e6;
-      --fg-dim: #a8a69c;
+      --bg: #000000;
+      --fg: #ffffff;
+      --fg-dim: #cccccc;
       --accent: #3a5dae;
       --border: #1a1a1a;
+      --tag-bg: #1f1f1f;
       --mono: 'IBM Plex Mono', monospace;
       --sans: 'IBM Plex Sans', sans-serif;
+    }
+
+    .agartha {
+      --bg: #f5f5f0;
+      --fg: #000000;
+      --fg-dim: #555550;
+      --tag-bg: var(--accent);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -155,19 +169,13 @@
   text-transform: uppercase;
   transition: all 0.2s ease;
   border-radius: 3px;
-}
-
-/* Dark mode (default / Surface) */
-.tag {
   color: var(--accent);
-  background: #1f1f1f;
+  background: var(--tag-bg);
   border: 1px solid rgba(58, 93, 174, 0.3);
 }
 
-/* Light mode (Agartha) */
 .agartha .tag {
-  color: var(--fg);              /* black text */
-  background: var(--accent);     /* orange background */
+  color: #ffffff;
   border: 1px solid var(--accent);
 }
     
@@ -271,7 +279,7 @@
 </main>
 
 <footer>
-  <button id="agartha-toggle"
+  <button class="agartha-toggle"
     style="font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em;
            background: transparent; border: 1px solid var(--accent);
            color: var(--accent); padding: 0.5rem 1rem; cursor: pointer;
@@ -283,45 +291,29 @@
 </footer>
 
 <script>
-const toggle = document.getElementById('agartha-toggle');
-const body = document.body;
 const root = document.documentElement;
 
-// Load saved theme on page load
-const savedTheme = localStorage.getItem('theme') || 'surface'; // default to dark
-if (savedTheme === 'agartha') {
-  body.classList.add('agartha');
-  applyAgartha();
-} else {
-  body.classList.remove('agartha');
-  applySurface();
+function updateToggles() {
+  const isAgartha = root.classList.contains('agartha');
+  document.querySelectorAll('.agartha-toggle').forEach(btn => {
+    btn.textContent = isAgartha ? 'Exit Agartha' : 'Enter Agartha';
+  });
 }
 
-toggle.addEventListener('click', () => {
-  if (body.classList.contains('agartha')) {
-    body.classList.remove('agartha');
-    applySurface();
-    localStorage.setItem('theme', 'surface');
-  } else {
-    body.classList.add('agartha');
-    applyAgartha();
-    localStorage.setItem('theme', 'agartha');
-  }
+updateToggles();
+
+document.querySelectorAll('.agartha-toggle').forEach(btn => {
+  btn.addEventListener('click', () => {
+    if (root.classList.contains('agartha')) {
+      root.classList.remove('agartha');
+      localStorage.setItem('theme', 'surface');
+    } else {
+      root.classList.add('agartha');
+      localStorage.setItem('theme', 'agartha');
+    }
+    updateToggles();
+  });
 });
-
-function applyAgartha() {
-  root.style.setProperty('--bg', '#f5f5f0');
-  root.style.setProperty('--fg', '#000000');
-  root.style.setProperty('--fg-dim', '#000000');
-  toggle.textContent = 'Exit Agartha';
-}
-
-function applySurface() {
-  root.style.setProperty('--bg', '#000000');
-  root.style.setProperty('--fg', '#ffffff');
-  root.style.setProperty('--fg-dim', '#cccccc'); // or #ffffff if you want pure white
-  toggle.textContent = 'Enter Agartha';
-}
 </script>
 
 </body>
