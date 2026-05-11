@@ -21,21 +21,21 @@
   <style>
     :root {
       --bg: #000000;
-      --fg: #33ff33;
-      --fg-dim: #33ff33;
-      --accent: #46e385;
-      --border: #7e7e82;
-      --tag-bg: #212123;
+      --fg: #dee2e6;
+      --fg-dim: #adb5bd;
+      --accent: #6ea8fe;
+      --border: #343a40;
+      --tag-bg: #343a40;
       --mono: 'IBM Plex Mono', monospace;
       --sans: 'IBM Plex Sans', sans-serif;
     }
 
     .agartha {
       --bg: #ffffff;
-      --fg: #2f2e2a;
-      --fg-dim: #535247;
-      --accent: #46e385;
-      --border: #f2f2f2;
+      --fg: #212529;
+      --fg-dim: #6c757d;
+      --accent: #0d6efd;
+      --border: #dee2e6;
       --tag-bg: var(--accent);
     }
 
@@ -44,22 +44,11 @@
     html { font-size: 15px; }
 
     body {
-      background: var(--bg);
+      background-color: var(--bg);
       background-image:
-        repeating-linear-gradient(
-          0deg,
-          transparent,
-          transparent 19px,
-          rgba(70, 227, 133, 0.04) 19px,
-          rgba(70, 227, 133, 0.04) 20px
-        ),
-        repeating-linear-gradient(
-          90deg,
-          transparent,
-          transparent 19px,
-          rgba(70, 227, 133, 0.04) 19px,
-          rgba(70, 227, 133, 0.04) 20px
-        );
+        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+      background-size: 25px 25px;
       color: var(--fg);
       font-family: var(--sans);
       line-height: 1.6;
@@ -68,20 +57,8 @@
 
     .agartha body {
       background-image:
-        repeating-linear-gradient(
-          0deg,
-          transparent,
-          transparent 19px,
-          rgba(70, 227, 133, 0.04) 19px,
-          rgba(70, 227, 133, 0.04) 20px
-        ),
-        repeating-linear-gradient(
-          90deg,
-          transparent,
-          transparent 19px,
-          rgba(70, 227, 133, 0.04) 19px,
-          rgba(70, 227, 133, 0.04) 20px
-        );
+        linear-gradient(rgba(0, 0, 0, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.08) 1px, transparent 1px);
     }
 
     header {
@@ -191,7 +168,7 @@
   border-radius: 3px;
   color: var(--accent);
   background: var(--tag-bg);
-  border: 1px solid rgba(70, 227, 133, 0.3);
+  border: 1px solid rgba(110, 168, 254, 0.3);
 }
 
 .agartha .tag {
