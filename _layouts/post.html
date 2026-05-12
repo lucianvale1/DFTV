@@ -118,7 +118,7 @@ layout: default
     margin-bottom: 0;
   }
 
-  /* Headings — dark mode: white */
+  /* ── Dark mode: headings ── */
   .article-title,
   .article-content h1,
   .article-content h2,
@@ -126,86 +126,105 @@ layout: default
   .article-content h4,
   .article-content h5,
   .article-content h6 {
-    color: #ffffff;
+    color: #f2f0e6;
   }
 
-  /* Links and superscripts — dark mode: darc-orange */
+  /* Dark mode: body text slightly dimmer than headings */
+  .article-content {
+    color: #e0ddd3;
+  }
+
+  /* Dark mode: links + superscripts */
   .article-content a,
   .article-content sup a {
-    color: var(--darc-orange);
+    color: #ff4400;
     text-decoration: none;
   }
-  .article-content a:hover {
-    text-decoration: underline;
+  .article-content a:hover { text-decoration: underline; }
+
+  /* Dark mode: blockquote */
+  .article-content blockquote {
+    border-left: 4px solid #f2f0e6;
+    margin: 2rem 0;
+    padding: 1rem 2rem;
+    font-style: italic;
+    color: #f2f0e6;
+    background: rgba(242, 240, 230, 0.05);
   }
 
-  /* Headings — light mode: darc-blue */
+  /* ── Light mode: headings ── */
   .agartha .article-title,
-  .agartha .article-content h1,
-  .agartha .article-content h2,
+  .agartha .article-content h1 { color: #223c6f; }
+
+  .agartha .article-content h2 {
+    color: #223c6f;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding-bottom: 0.5rem;
+  }
+
   .agartha .article-content h3,
   .agartha .article-content h4,
   .agartha .article-content h5,
   .agartha .article-content h6 {
-    color: var(--darc-blue);
+    color: #111111;
   }
 
-  /* Links and superscripts — light mode: darc-blue */
+  /* Light mode: body text */
+  .agartha .article-content { color: #222222; }
+
+  /* Light mode: links + superscripts */
   .agartha .article-content a,
   .agartha .article-content sup a {
-    color: var(--darc-blue);
+    color: #223c6f;
+  }
+
+  /* Light mode: blockquote */
+  .agartha .article-content blockquote {
+    border-left: 4px solid #223c6f;
+    color: #223c6f;
+    background: rgba(34, 60, 111, 0.05);
   }
 
   /* ── Footnotes ── */
   .footnotes {
     max-width: 700px;
     margin: 3rem auto 0;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--border);
-    font-family: var(--mono);
-    font-size: 0.72rem;
+    padding-top: 2rem;
+    border-top: 4px solid #f2f0e6;
+    font-size: 0.9rem;
+    color: #a8a69c;
     line-height: 1.7;
   }
 
   .footnotes hr { display: none; }
 
   .footnotes ol {
-    padding-left: 1.4rem;
-    list-style: decimal;
-  }
-
-  .footnotes ol li::marker {
-    color: var(--darc-orange);
-    font-weight: 600;
+    padding-left: 1.5rem;
+    list-style-type: decimal;
   }
 
   .footnotes li {
-    color: var(--fg-dim);
-    margin-bottom: 0.6rem;
+    margin-bottom: 0.8rem;
+    padding-left: 0.5rem;
   }
 
-  .footnotes li p {
-    display: inline;
-    margin: 0;
-  }
+  .footnotes p { margin-bottom: 0; }
 
-  .reversefootnote {
-    color: var(--darc-orange);
+  /* Dark mode: footnote links (reversefootnote) inherit #ff4400 from article-content a */
+  .footnotes a {
+    color: #ff4400;
     text-decoration: none;
-    margin-left: 0.4rem;
-    font-size: 1rem;
-    line-height: 1;
+  }
+  .footnotes a:hover { text-decoration: underline; }
+
+  /* Light mode footnotes */
+  .agartha .footnotes {
+    border-top-color: #111111;
+    color: #666666;
   }
 
-  .reversefootnote:hover { opacity: 0.7; }
-
-  /* Footnotes light mode */
-  .agartha .footnotes ol li::marker {
-    color: var(--darc-blue);
-  }
-
-  .agartha .reversefootnote {
-    color: var(--darc-blue);
+  .agartha .footnotes a {
+    color: #223c6f;
   }
 
   .post-footer {
