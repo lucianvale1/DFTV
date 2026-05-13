@@ -19,11 +19,11 @@ layout: default
     display: grid;
     grid-template-columns: 1fr 1.5fr;
     min-height: 400px;
-    border-bottom: 4px solid var(--accent);
+    border-bottom: 2px solid var(--accent);
   }
 
   .post-hero-image {
-    border-right: 4px solid var(--accent);
+    border-right: 2px solid var(--accent);
     overflow: hidden;
     background: #000;
     min-height: 400px;
@@ -50,18 +50,20 @@ layout: default
     padding: 3rem 4vw;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    gap: 1.25rem;
+    justify-content: flex-end;
+    gap: 0.6rem;
     background: var(--bg);
+    padding-bottom: 2rem;
   }
 
   .article-num {
-    font-size: 4rem;
+    font-size: 2rem;
     font-family: 'Inter', sans-serif;
-    font-weight: 500;
+    font-weight: 300;
     line-height: 1;
     color: var(--fg);
-    opacity: 0.9;
+    opacity: 0.5;
+    margin-bottom: 0.5rem;
   }
 
   .article-meta {
@@ -97,6 +99,7 @@ layout: default
     display: flex;
     flex-wrap: wrap;
     gap: 0.6rem;
+    margin-top: 0.4rem;
   }
 
   .article-content {
