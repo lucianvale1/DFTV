@@ -44,15 +44,6 @@ excerpt: "A brief summary of your post..."
 └── about.md                 # About page
 ```
 
-## Local Development (Optional)
-
-```bash
-bundle install
-bundle exec jekyll serve
-```
-
-Visit `http://localhost:4000`
-
 ## Deployment
 
 Push to GitHub - it automatically deploys!
