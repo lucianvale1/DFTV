@@ -9,6 +9,6 @@ dispatch_number: "02"
 image: /assets/images/touch.jpg
 password: "yourpassword"
 ---
+Writing in progress...near completion.
 
-
-test test
+Current word count: 1391

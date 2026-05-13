@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 500" width="1500" height="500">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&amp;display=swap');
+    </style>
+  </defs>
+
+  <rect width="1500" height="500" fill="white"/>
+
+  <text
+    x="750"
+    y="310"
+    font-family="'JetBrains Mono', monospace"
+    font-weight="500"
+    font-size="220"
+    letter-spacing="0.05em"
+    text-anchor="middle"
+    fill="#0d0d0d"
+    text-rendering="geometricPrecision"
+  >DFTV</text>
+</svg>
