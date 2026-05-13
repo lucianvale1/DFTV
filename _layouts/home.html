@@ -346,12 +346,12 @@ layout: default
   .dispatch-overlay-line2::after {
     content: '▋';
     animation: cursor-blink 0.6s step-end infinite;
-    opacity: 1;
+    display: none;
   }
 
-  .dispatch-overlay-line1.done::after,
-  .dispatch-overlay-line2.done::after {
-    display: none;
+  .dispatch-overlay-line1.typing::after,
+  .dispatch-overlay-line2.typing::after {
+    display: inline;
   }
 
   @keyframes cursor-blink {
@@ -369,13 +369,11 @@ layout: default
     padding: 0.6rem 1.5rem;
     text-decoration: none;
     opacity: 0;
-    transform: translateY(8px);
-    transition: opacity 0.4s ease, transform 0.4s ease, background 0.2s, color 0.2s;
+    transition: opacity 1.2s ease, background 0.2s, color 0.2s;
   }
 
   .dispatch-overlay-btn.visible {
     opacity: 1;
-    transform: translateY(0);
   }
 
   .dispatch-overlay-btn:hover {
@@ -413,14 +411,14 @@ layout: default
 
   function typeInto(el, text, speed, onDone) {
     el.textContent = '';
-    el.classList.remove('done');
+    el.classList.add('typing');
     let i = 0;
     function next() {
       if (i < text.length) {
         el.textContent += text[i++];
         setTimeout(next, speed);
       } else {
-        el.classList.add('done');
+        el.classList.remove('typing');
         if (onDone) onDone();
       }
     }
