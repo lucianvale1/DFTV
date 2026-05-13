@@ -50,20 +50,32 @@ layout: default
     padding: 3rem 4vw;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    gap: 0.6rem;
+    justify-content: center;
+    align-items: center;
     background: var(--bg);
-    padding-bottom: 2rem;
+  }
+
+  .post-hero-text-inner {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.75rem;
   }
 
   .article-num {
-    font-size: 2rem;
+    font-size: 5.5rem;
     font-family: 'Inter', sans-serif;
-    font-weight: 300;
+    font-weight: 500;
     line-height: 1;
     color: var(--fg);
-    opacity: 0.5;
-    margin-bottom: 0.5rem;
+    opacity: 0.9;
+    flex-shrink: 0;
+  }
+
+  .article-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-top: 0.3rem;
   }
 
   .article-meta {
@@ -375,25 +387,29 @@ layout: default
     </div>
   </div>
   <div class="post-hero-text">
-    {% if page.dispatch_number %}
-      <span class="article-num">{{ page.dispatch_number }}</span>
-    {% endif %}
-    <div class="article-meta">
-      <span class="article-date">{{ page.date | date: "%Y.%m.%d" }}</span>
-      {% if page.location %}
-        <span class="article-location">
-          <span class="location-marker">▸</span>{{ page.location }}
-        </span>
+    <div class="post-hero-text-inner">
+      {% if page.dispatch_number %}
+        <span class="article-num">{{ page.dispatch_number }}</span>
       {% endif %}
-    </div>
-    <h1 class="article-title">{{ page.title }}</h1>
-    {% if page.tags %}
-      <div class="article-tags">
-        {% for tag in page.tags %}
-          <span class="tag">{{ tag | upcase }}</span>
-        {% endfor %}
+      <div class="article-info">
+        <div class="article-meta">
+          <span class="article-date">{{ page.date | date: "%Y.%m.%d" }}</span>
+          {% if page.location %}
+            <span class="article-location">
+              <span class="location-marker">▸</span>{{ page.location }}
+            </span>
+          {% endif %}
+        </div>
+        <h1 class="article-title">{{ page.title }}</h1>
+        {% if page.tags %}
+          <div class="article-tags">
+            {% for tag in page.tags %}
+              <span class="tag">{{ tag | upcase }}</span>
+            {% endfor %}
+          </div>
+        {% endif %}
       </div>
-    {% endif %}
+    </div>
   </div>
 </div>
 
