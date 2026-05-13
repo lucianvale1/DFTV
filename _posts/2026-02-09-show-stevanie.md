@@ -1,15 +1,11 @@
 ---
 layout: post
-title: "Example"
-date: 2026-02-09
+title: "The Digital Divine"
+date: 2026-03-21
 location: LA
-dispatch_id: "0003"
-tags: [example, test]
-dispatch_number: "03"
+dispatch_id: "0002"
+tags: [technology, philosophy]
+dispatch_number: "02"
 image: /assets/images/touch.jpg
-
+password: "yourpassword"
 ---
-
-This is to show stevanie how _layouts/post.html works.
-
-woo

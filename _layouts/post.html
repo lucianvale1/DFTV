@@ -255,6 +255,55 @@ layout: default
     font-size: 0.75rem;
     color: var(--fg-dim);
   }
+
+  .password-gate {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 280px;
+    gap: 1.2rem;
+    padding: 3rem 2rem;
+  }
+
+  .password-gate-label {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--fg);
+  }
+
+  .password-gate-input {
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--fg);
+    padding: 0.6rem 1rem;
+    width: 260px;
+    outline: none;
+    text-align: center;
+    transition: border-color 0.2s;
+  }
+
+  .password-gate-input:focus {
+    border-color: var(--accent);
+  }
+
+  .password-gate-error {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .password-gate-error.visible {
+    opacity: 1;
+  }
   
   .back-link {
     color: var(--fg-dim);
@@ -355,17 +404,61 @@ layout: default
     {% endif %}
   </div>
 
-  <div class="article-content">
+  {% if page.password %}
+  <div class="password-gate" id="password-gate">
+    <span class="password-gate-label">Enter password</span>
+    <input class="password-gate-input" id="password-input" type="password" autocomplete="off" />
+    <span class="password-gate-error" id="password-error">Incorrect password</span>
+  </div>
+  {% endif %}
+
+  <div class="article-content" id="article-body"{% if page.password %} style="display:none"{% endif %}>
     {{ content }}
   </div>
 
-  <div class="post-footer">
+  <div class="post-footer"{% if page.password %} id="post-footer" style="display:none"{% endif %}>
     <a href="/" class="back-link">← Back to index</a>
     {% if page.dispatch_id %}
       <span class="dispatch-footer">Dispatch-{{ page.dispatch_id }}</span>
     {% endif %}
   </div>
 </article>
+
+{% if page.password %}
+<script>
+(function() {
+  const pw = "{{ page.password }}";
+  const key = "unlocked:{{ page.url }}";
+  const gate = document.getElementById('password-gate');
+  const body = document.getElementById('article-body');
+  const footer = document.getElementById('post-footer');
+  const input = document.getElementById('password-input');
+  const error = document.getElementById('password-error');
+
+  function unlock() {
+    gate.style.display = 'none';
+    body.style.display = 'block';
+    if (footer) footer.style.display = 'flex';
+    sessionStorage.setItem(key, '1');
+  }
+
+  if (sessionStorage.getItem(key) === '1') { unlock(); return; }
+
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+      if (input.value === pw) {
+        unlock();
+      } else {
+        error.classList.add('visible');
+        input.value = '';
+      }
+    } else {
+      error.classList.remove('visible');
+    }
+  });
+})();
+</script>
+{% endif %}
 
   <style>
         @media (max-width: 768px) {
