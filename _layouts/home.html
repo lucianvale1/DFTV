@@ -287,13 +287,14 @@ layout: default
     </div>
     <a id="dispatch-overlay-btn" class="dispatch-overlay-btn" href="#">Continue to Dispatch</a>
   </div>
+  <a href="/" class="dispatch-overlay-back">← Back to Index</a>
 </div>
 
 <style>
   .dispatch-overlay {
     position: fixed;
     inset: 0;
-    background: #000000;
+    background: var(--bg);
     z-index: 9999;
     display: flex;
     align-items: center;
@@ -336,7 +337,7 @@ layout: default
     font-family: 'JetBrains Mono', monospace;
     font-size: 2rem;
     font-weight: 400;
-    color: #f2f0e6;
+    color: var(--fg);
     max-width: 700px;
     line-height: 1.2;
   }
@@ -380,6 +381,26 @@ layout: default
   .dispatch-overlay-btn:hover {
     background: var(--accent);
     color: #000;
+  }
+
+  .dispatch-overlay-back {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--fg-dim);
+    text-decoration: none;
+    opacity: 0.7;
+    transition: opacity 0.2s, color 0.2s;
+  }
+
+  .dispatch-overlay-back:hover {
+    opacity: 1;
+    color: var(--fg);
   }
 </style>
 

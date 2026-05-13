@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "The Digital Divine"
+title: "Digital Divinity"
 date: 2026-03-21
 location: LA
 dispatch_id: "0002"
