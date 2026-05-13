@@ -8,6 +8,7 @@ tags: [philosophy]
 dispatch_number: "04"
 image: /assets/images/prodigal-son.jpg
 password: "yourpassword"
+image_position: "50% 30%"
 ---
 
 Writing in progress...near completion.

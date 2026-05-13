@@ -230,7 +230,7 @@ layout: default
   </div>
 
   <div class="posts-grid">
-    {% for post in site.posts limit: 3 %}
+    {% for post in site.posts limit: 5 %}
       <a href="{{ post.url }}" class="post-card" data-dispatch-id="{{ post.dispatch_id }}" data-title="{{ post.title }}">
         <div class="post-card-inner">
           <h2 class="post-title">{{ post.title }}</h2>
