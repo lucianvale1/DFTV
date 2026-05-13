@@ -231,7 +231,7 @@ layout: default
 
   <div class="posts-grid">
     {% for post in site.posts limit: 3 %}
-      <a href="{{ post.url }}" class="post-card">
+      <a href="{{ post.url }}" class="post-card" data-dispatch-id="{{ post.dispatch_id }}" data-title="{{ post.title }}">
         <div class="post-card-inner">
           <h2 class="post-title">{{ post.title }}</h2>
 
@@ -278,3 +278,164 @@ layout: default
     </a>
   </div>
 </section>
+
+<div id="dispatch-overlay" class="dispatch-overlay">
+  <div class="dispatch-overlay-content">
+    <div class="dispatch-overlay-lines">
+      <div class="dispatch-overlay-line1" id="overlay-line1"></div>
+      <div class="dispatch-overlay-line2" id="overlay-line2"></div>
+    </div>
+    <a id="dispatch-overlay-btn" class="dispatch-overlay-btn" href="#">Continue to Dispatch</a>
+  </div>
+</div>
+
+<style>
+  .dispatch-overlay {
+    position: fixed;
+    inset: 0;
+    background: #000000;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+
+  .dispatch-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .dispatch-overlay-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
+    text-align: center;
+    padding: 2rem;
+  }
+
+  .dispatch-overlay-lines {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: center;
+  }
+
+  .dispatch-overlay-line1 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .dispatch-overlay-line2 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 2rem;
+    font-weight: 400;
+    color: #f2f0e6;
+    max-width: 700px;
+    line-height: 1.2;
+  }
+
+  .dispatch-overlay-line1::after,
+  .dispatch-overlay-line2::after {
+    content: '▋';
+    animation: cursor-blink 0.6s step-end infinite;
+    opacity: 1;
+  }
+
+  .dispatch-overlay-line1.done::after,
+  .dispatch-overlay-line2.done::after {
+    display: none;
+  }
+
+  @keyframes cursor-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .dispatch-overlay-btn {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 0.6rem 1.5rem;
+    text-decoration: none;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.4s ease, transform 0.4s ease, background 0.2s, color 0.2s;
+  }
+
+  .dispatch-overlay-btn.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .dispatch-overlay-btn:hover {
+    background: var(--accent);
+    color: #000;
+  }
+</style>
+
+<script>
+(function() {
+  const overlay  = document.getElementById('dispatch-overlay');
+  const line1El  = document.getElementById('overlay-line1');
+  const line2El  = document.getElementById('overlay-line2');
+  const btn      = document.getElementById('dispatch-overlay-btn');
+
+  function typeInto(el, text, speed, onDone) {
+    el.textContent = '';
+    el.classList.remove('done');
+    let i = 0;
+    function next() {
+      if (i < text.length) {
+        el.textContent += text[i++];
+        setTimeout(next, speed);
+      } else {
+        el.classList.add('done');
+        if (onDone) onDone();
+      }
+    }
+    next();
+  }
+
+  function showOverlay(url, dispatchId, title) {
+    btn.href = url;
+    btn.classList.remove('visible');
+    line1El.textContent = '';
+    line2El.textContent = '';
+    line1El.classList.remove('done');
+    line2El.classList.remove('done');
+    overlay.classList.add('active');
+
+    const label = dispatchId ? 'Dispatch ' + dispatchId : 'Dispatch';
+    typeInto(line1El, label, 55, function() {
+      setTimeout(function() {
+        typeInto(line2El, title, 40, function() {
+          setTimeout(function() {
+            btn.classList.add('visible');
+          }, 300);
+        });
+      }, 150);
+    });
+  }
+
+  document.querySelectorAll('.post-card').forEach(function(card) {
+    card.addEventListener('click', function(e) {
+      e.preventDefault();
+      showOverlay(this.href, this.dataset.dispatchId, this.dataset.title);
+    });
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') overlay.classList.remove('active');
+  });
+})();
+</script>
