@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Digital Divinity"
+title: "The Second Creation"
 date: 2026-03-21
 location: LA
 dispatch_id: "0002"
