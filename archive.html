@@ -89,7 +89,7 @@ permalink: /archive/
     
     {% if post.tags %}
       <div class="archive-tags">
-        {% for tag in post.tags %}
+        {% for tag in post.tags | sort %}
           <span class="tag">{{ tag | upcase }}</span>
         {% endfor %}
       </div>

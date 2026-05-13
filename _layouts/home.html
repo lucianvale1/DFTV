@@ -225,7 +225,7 @@ layout: default
       {% if count < 10 %}0{{ count }}{% else %}{{ count }}{% endif %}
     </div>
     <div class="posts-hero-text">
-      <strong>Dispatches</strong> from the Vale. A running count of field observations, cultural artifacts, and insights gathered throughout my travels.
+      <em>Dispatches from the Vale</em> — observations on systems, culture, and the machinery underneath. No schedule. No assumed audience.
     </div>
   </div>
 
@@ -251,7 +251,7 @@ layout: default
 
           {% if post.tags %}
             <div class="post-tags">
-              {% for tag in post.tags %}
+              {% for tag in post.tags | sort %}
                 <span class="tag">{{ tag | upcase }}</span>
               {% endfor %}
             </div>
