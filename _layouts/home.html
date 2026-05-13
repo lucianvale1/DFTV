@@ -459,7 +459,8 @@ layout: default
   });
 
   document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') overlay.classList.remove('active');
+    if (!overlay.classList.contains('active')) return;
+    if (e.key === 'Escape' || e.key === 'Enter') window.location.href = '/';
   });
 })();
 

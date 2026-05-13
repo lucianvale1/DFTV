@@ -464,6 +464,10 @@ layout: default
 
   if (sessionStorage.getItem(key) === '1') { unlock(); return; }
 
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' && document.activeElement !== input) window.location.href = '/';
+  });
+
   input.addEventListener('keydown', function(e) {
     if (e.key === 'Enter') {
       if (input.value === pw) {
