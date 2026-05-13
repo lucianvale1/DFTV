@@ -430,6 +430,10 @@ layout: default
     next();
   }
 
+  function closeOverlay() {
+    overlay.classList.remove('active');
+  }
+
   function showOverlay(url, dispatchId, title) {
     btn.href = url;
     btn.classList.remove('visible');
@@ -438,6 +442,7 @@ layout: default
     line1El.classList.remove('done');
     line2El.classList.remove('done');
     overlay.classList.add('active');
+    history.pushState({ overlay: true }, '');
 
     const label = dispatchId ? 'Dispatch ' + dispatchId : 'Dispatch';
     typeInto(line1El, label, 100, function() {
@@ -456,6 +461,15 @@ layout: default
       e.preventDefault();
       showOverlay(this.href, this.dataset.dispatchId, this.dataset.title);
     });
+  });
+
+  window.addEventListener('popstate', function() {
+    closeOverlay();
+  });
+
+  // Hide overlay when browser restores page from bfcache (mobile back)
+  window.addEventListener('pageshow', function(e) {
+    if (e.persisted) closeOverlay();
   });
 
   document.addEventListener('keydown', function(e) {
