@@ -6,7 +6,7 @@ location: LA
 dispatch_id: "0002"
 tags: [technology, philosophy]
 dispatch_number: "02"
-image: /assets/images/touch.jpg
+image: /assets/images/creation_Ofadam_machine.jpg
 password: "yourpassword"
 ---
 Writing in progress...near completion.
