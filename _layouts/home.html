@@ -416,9 +416,9 @@ layout: default
     overlay.classList.add('active');
 
     const label = dispatchId ? 'Dispatch ' + dispatchId : 'Dispatch';
-    typeInto(line1El, label, 55, function() {
+    typeInto(line1El, label, 100, function() {
       setTimeout(function() {
-        typeInto(line2El, title, 40, function() {
+        typeInto(line2El, title, 80, function() {
           setTimeout(function() {
             btn.classList.add('visible');
           }, 300);
