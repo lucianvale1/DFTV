@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Prodigal Son"
-date: 2026-05-16
+date: 2026-05-11
 location: LA
 dispatch_id: "0004"
 tags: [philosophy]
