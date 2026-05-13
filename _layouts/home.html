@@ -260,7 +260,7 @@ layout: default
           <div class="post-image-wrapper">
             <div class="post-image">
               {% if post.image %}
-                <img src="{{ post.image }}" alt="{{ post.title }}">
+                <img src="{{ post.image }}" alt="{{ post.title }}"{% if post.image_position %} data-object-position="{{ post.image_position }}"{% endif %}>
               {% else %}
                   Image
               {% endif %}
@@ -457,4 +457,8 @@ layout: default
     if (e.key === 'Escape') overlay.classList.remove('active');
   });
 })();
+
+document.querySelectorAll('img[data-object-position]').forEach(img => {
+  img.style.objectPosition = img.dataset.objectPosition;
+});
 </script>
