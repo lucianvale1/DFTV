@@ -65,6 +65,29 @@ permalink: /archive/
     flex-shrink: 0;                
   }
 
+  @media (max-width: 600px) {
+    .archive-row {
+      flex-wrap: wrap;
+      gap: 0.5rem 1rem;
+      align-items: flex-start;
+    }
+
+    .archive-date {
+      font-size: 0.75rem;
+      min-width: unset;
+      opacity: 0.55;
+    }
+
+    .archive-post-title {
+      width: 100%;
+      order: -1;
+    }
+
+    .archive-tags {
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+  }
 
 </style>
 

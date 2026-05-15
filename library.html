@@ -35,30 +35,13 @@ permalink: /library/
     line-height: 1.6;
   }
 
-  /* ── Filter bars ──────────────────────────────────────── */
-  .filter-group {
-    margin-bottom: 3rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
+  /* ── Filter bar ───────────────────────────────────────── */
   .filter-bar {
     display: flex;
     gap: 0.35rem;
     flex-wrap: wrap;
     align-items: center;
-  }
-
-  .filter-bar-label {
-    font-family: var(--mono);
-    font-size: 0.52rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--fg-dim);
-    opacity: 0.45;
-    width: 3.5rem;
-    flex-shrink: 0;
+    margin-bottom: 1rem;
   }
 
   .filter-btn {
@@ -91,7 +74,7 @@ permalink: /library/
     color: var(--fg-dim);
     letter-spacing: 0.08em;
     opacity: 0.4;
-    margin-bottom: 1.6rem;
+    margin-bottom: 2rem;
   }
 
   /* ── Entry ────────────────────────────────────────────── */
@@ -108,7 +91,6 @@ permalink: /library/
     display: none;
   }
 
-  /* title row: title left, badge right */
   .entry-title-row {
     display: flex;
     align-items: baseline;
@@ -138,7 +120,6 @@ permalink: /library/
     align-self: center;
   }
 
-  /* source / author */
   .entry-meta {
     font-family: var(--mono);
     font-size: 0.62rem;
@@ -147,7 +128,6 @@ permalink: /library/
     margin-bottom: 0.9rem;
   }
 
-  /* note */
   .entry-note {
     font-family: var(--mono);
     font-size: 0.7rem;
@@ -171,16 +151,21 @@ permalink: /library/
   }
 
   @media (max-width: 600px) {
-    .entry-title-row {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 0.4rem;
+    .filter-bar {
+      gap: 0.25rem;
     }
-    .filter-bar-label {
-      display: none;
+
+    .filter-btn {
+      font-size: 0.52rem;
+      padding: 0.25rem 0.5rem;
     }
+
     .entry-title {
-      font-size: 1rem;
+      font-size: 0.95rem;
+    }
+
+    .entry-badge {
+      font-size: 0.48rem !important;
     }
   }
 
@@ -191,28 +176,16 @@ permalink: /library/
 
 <p class="filter-count" id="filter-count">{{ site.data.library | size }} items</p>
 
-<div class="filter-group">
-  <div class="filter-bar" data-filter-group="type">
-    <span class="filter-bar-label">Format</span>
-    <button class="filter-btn active" data-filter="all">All</button>
-    <button class="filter-btn" data-filter="written">Written</button>
-    <button class="filter-btn" data-filter="video">Video</button>
-    <button class="filter-btn" data-filter="podcast">Podcast</button>
-    <button class="filter-btn" data-filter="post">Post</button>
-  </div>
-  <div class="filter-bar" data-filter-group="topic">
-    <span class="filter-bar-label">Topic</span>
-    <button class="filter-btn active" data-filter="all">All</button>
-    <button class="filter-btn" data-filter="philosophy">Philosophy</button>
-    <button class="filter-btn" data-filter="finance">Finance</button>
-    <button class="filter-btn" data-filter="ai">AI</button>
-    <button class="filter-btn" data-filter="learning">Learning</button>
-    <button class="filter-btn" data-filter="leadership">Leadership</button>
-  </div>
+<div class="filter-bar">
+  <button class="filter-btn active" data-filter="all">All</button>
+  <button class="filter-btn" data-filter="written">Written</button>
+  <button class="filter-btn" data-filter="video">Video</button>
+  <button class="filter-btn" data-filter="podcast">Podcast</button>
+  <button class="filter-btn" data-filter="post">Post</button>
 </div>
 
 {% for entry in site.data.library %}
-<div class="library-entry" data-type="{{ entry.type | downcase }}" data-topic="{{ entry.topic | downcase }}">
+<div class="library-entry" data-type="{{ entry.type | downcase }}">
   <div class="entry-title-row">
     <a class="entry-title" href="{{ entry.url }}" target="_blank" rel="noopener noreferrer">{{ entry.title }}</a>
     <span class="tag entry-badge">{{ entry.type }}</span>
@@ -227,43 +200,27 @@ permalink: /library/
 <p class="no-results" id="no-results">No entries match this filter.</p>
 
 <script>
-  const typeBar   = document.querySelector('[data-filter-group="type"]');
-  const topicBar  = document.querySelector('[data-filter-group="topic"]');
+  const btns      = document.querySelectorAll('.filter-btn');
   const entries   = document.querySelectorAll('.library-entry');
   const noResults = document.getElementById('no-results');
   const countEl   = document.getElementById('filter-count');
 
-  let activeType  = 'all';
-  let activeTopic = 'all';
-
-  function applyFilters() {
-    let visible = 0;
-    entries.forEach(entry => {
-      const typeMatch  = activeType  === 'all' || entry.dataset.type  === activeType;
-      const topicMatch = activeTopic === 'all' || entry.dataset.topic === activeTopic;
-      const show = typeMatch && topicMatch;
-      entry.classList.toggle('hidden', !show);
-      if (show) visible++;
-    });
-    countEl.textContent = visible + ' item' + (visible !== 1 ? 's' : '');
-    noResults.style.display = visible === 0 ? 'block' : 'none';
-  }
-
-  typeBar.querySelectorAll('.filter-btn').forEach(btn => {
+  btns.forEach(btn => {
     btn.addEventListener('click', () => {
-      typeBar.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      activeType = btn.dataset.filter;
-      applyFilters();
-    });
-  });
 
-  topicBar.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      topicBar.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      activeTopic = btn.dataset.filter;
-      applyFilters();
+      const filter = btn.dataset.filter;
+      let visible = 0;
+
+      entries.forEach(entry => {
+        const match = filter === 'all' || entry.dataset.type === filter;
+        entry.classList.toggle('hidden', !match);
+        if (match) visible++;
+      });
+
+      countEl.textContent = visible + ' item' + (visible !== 1 ? 's' : '');
+      noResults.style.display = visible === 0 ? 'block' : 'none';
     });
   });
 </script>
