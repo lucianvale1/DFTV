@@ -72,6 +72,7 @@
       height: 60px;
       display: flex;
       align-items: center;
+      justify-content: space-between;
       position: fixed;
       top: 0;
       left: 0;
@@ -80,6 +81,37 @@
       z-index: 1000;
       transform: translateY(0);
       transition: transform 0.3s ease;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-link {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #ffffff;
+      text-decoration: none;
+      opacity: 0.55;
+      transition: opacity 0.2s ease, color 0.2s ease;
+      padding-bottom: 2px;
+      border-bottom: 2px solid transparent;
+    }
+
+    .nav-link:hover {
+      opacity: 1;
+      color: #ffffff;
+    }
+
+    .nav-link.active {
+      color: var(--accent);
+      opacity: 1;
+      border-bottom-color: var(--accent);
     }
 
     header.header-hidden {
@@ -227,10 +259,15 @@
 
         @media (max-width: 768px) {
             header {
-                padding: 1.5rem;
-                flex-direction: column;
-                gap: 0.25rem;
-                align-items: flex-start;
+                padding: 0 1.25rem;
+            }
+
+            .nav-links {
+                gap: 1.2rem;
+            }
+
+            .nav-link {
+                font-size: 0.55rem;
             }
 
             main {
@@ -276,6 +313,11 @@
 
 <header>
   <a href="/" class="site-title"><span class="tilt-char">D</span><span class="tilt-char">F</span><span class="tilt-char">T</span><span class="tilt-char">V</span></a>
+  <nav class="nav-links">
+    <a href="/archive/" class="nav-link{% if page.url == '/archive/' %} active{% endif %}">Archive</a>
+    <a href="/library/" class="nav-link{% if page.url == '/library/' %} active{% endif %}">Library</a>
+    <a href="/about/" class="nav-link{% if page.url == '/about/' %} active{% endif %}">About</a>
+  </nav>
 </header>
 
 <main>
