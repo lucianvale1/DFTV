@@ -1,5 +1,6 @@
 - title: "The Feynman Technique"
   type: written
+  topic: learning
   url: "https://fs.blog/feynman-technique/"
   source: Farnam Street
   author: Shane Parrish
@@ -7,6 +8,7 @@
 
 - title: "This Is Water"
   type: written
+  topic: philosophy
   url: "https://fs.blog/david-foster-wallace-this-is-water/"
   source: Farnam Street / David Foster Wallace
   author: David Foster Wallace
@@ -14,6 +16,7 @@
 
 - title: "The Tail End"
   type: written
+  topic: philosophy
   url: "https://waitbutwhy.com/2015/12/the-tail-end.html"
   source: Wait But Why
   author: Tim Urban
@@ -21,6 +24,7 @@
 
 - title: "Naval on Wealth and Happiness"
   type: podcast
+  topic: finance
   url: "https://nav.al/podcast"
   source: The Tim Ferriss Show
   author: Naval Ravikant
@@ -28,6 +32,7 @@
 
 - title: "Lex Fridman & Andrej Karpathy on AI"
   type: podcast
+  topic: ai
   url: "https://www.youtube.com/watch?v=cdiD-9MMpb0"
   source: Lex Fridman Podcast
   author: Lex Fridman & Andrej Karpathy
@@ -35,6 +40,7 @@
 
 - title: "How to Do Great Work"
   type: written
+  topic: learning
   url: "https://paulgraham.com/greatwork.html"
   source: Paul Graham
   author: Paul Graham
@@ -42,6 +48,7 @@
 
 - title: "Jocko Willink on Discipline and Leadership"
   type: video
+  topic: leadership
   url: "https://www.youtube.com/watch?v=pqObHjulqmk"
   source: YouTube
   author: Jocko Willink
@@ -49,6 +56,7 @@
 
 - title: "Sam Altman — How to Be Successful"
   type: written
+  topic: finance
   url: "https://blog.samaltman.com/how-to-be-successful"
   source: Sam Altman's Blog
   author: Sam Altman

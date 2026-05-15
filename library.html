@@ -35,13 +35,30 @@ permalink: /library/
     line-height: 1.6;
   }
 
-  /* ── Filter bar ───────────────────────────────────────── */
+  /* ── Filter bars ──────────────────────────────────────── */
+  .filter-group {
+    margin-bottom: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
   .filter-bar {
     display: flex;
     gap: 0.35rem;
     flex-wrap: wrap;
-    margin-bottom: 3rem;
     align-items: center;
+  }
+
+  .filter-bar-label {
+    font-family: var(--mono);
+    font-size: 0.52rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--fg-dim);
+    opacity: 0.45;
+    width: 3.5rem;
+    flex-shrink: 0;
   }
 
   .filter-btn {
@@ -54,7 +71,7 @@ permalink: /library/
     background: transparent;
     color: var(--fg-dim);
     cursor: pointer;
-    transition: all 0.18s ease;
+    transition: border-color 0.18s ease, color 0.18s ease, background 0.18s ease;
   }
 
   .filter-btn:hover {
@@ -70,11 +87,11 @@ permalink: /library/
 
   .filter-count {
     font-family: var(--mono);
-    font-size: 0.58rem;
+    font-size: 0.6rem;
     color: var(--fg-dim);
     letter-spacing: 0.08em;
-    margin-left: auto;
-    opacity: 0.5;
+    opacity: 0.4;
+    margin-bottom: 1.6rem;
   }
 
   /* ── Entry ────────────────────────────────────────────── */
@@ -82,7 +99,7 @@ permalink: /library/
     padding: 1.6rem 0 1.6rem 1.2rem;
     border-left: 2px solid transparent;
     border-bottom: 1px solid rgba(189, 71, 0, 0.2);
-    transition: border-left-color 0.2s ease, background 0.2s ease, padding-left 0.2s ease;
+    transition: border-left-color 0.2s ease, padding-left 0.2s ease;
     position: relative;
   }
 
@@ -92,24 +109,35 @@ permalink: /library/
 
   .library-entry:hover {
     border-left-color: var(--accent);
-    background: rgba(255, 68, 0, 0.03);
     padding-left: 1.6rem;
-  }
-
-  .agartha .library-entry:hover {
-    background: rgba(255, 68, 0, 0.05);
   }
 
   .library-entry.hidden {
     display: none;
   }
 
-  /* badge + number row */
-  .entry-top {
+  /* title row: title left, badge right */
+  .entry-title-row {
     display: flex;
-    align-items: center;
+    align-items: baseline;
     justify-content: space-between;
-    margin-bottom: 0.75rem;
+    gap: 1.2rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .entry-title {
+    font-family: var(--sans);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--fg);
+    text-decoration: none;
+    line-height: 1.35;
+    transition: color 0.18s ease;
+    flex: 1;
+  }
+
+  .entry-title:hover {
+    color: var(--accent);
   }
 
   .entry-badge {
@@ -120,32 +148,10 @@ permalink: /library/
     color: var(--accent);
     border: 1px solid rgba(255, 68, 0, 0.4);
     padding: 0.18rem 0.5rem;
+    white-space: nowrap;
+    flex-shrink: 0;
     line-height: 1;
-  }
-
-  .entry-num {
-    font-family: var(--mono);
-    font-size: 0.55rem;
-    letter-spacing: 0.1em;
-    color: var(--fg);
-    opacity: 0.18;
-  }
-
-  /* title */
-  .entry-title {
-    font-family: var(--sans);
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--fg);
-    text-decoration: none;
-    display: block;
-    line-height: 1.35;
-    margin-bottom: 0.3rem;
-    transition: color 0.18s ease;
-  }
-
-  .entry-title:hover {
-    color: var(--accent);
+    align-self: center;
   }
 
   /* source / author */
@@ -181,11 +187,13 @@ permalink: /library/
   }
 
   @media (max-width: 600px) {
-    .library-entry {
-      padding-left: 0.8rem;
+    .entry-title-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.4rem;
     }
-    .library-entry:hover {
-      padding-left: 1.1rem;
+    .filter-bar-label {
+      display: none;
     }
     .entry-title {
       font-size: 1rem;
@@ -197,24 +205,34 @@ permalink: /library/
 <div class="library-header">Library</div>
 <p class="library-sub">Pieces worth keeping. No algorithm, no ranking — just things that hit.</p>
 
-<div class="filter-bar">
-  <button class="filter-btn active" data-filter="all">All</button>
-  <button class="filter-btn" data-filter="written">Written</button>
-  <button class="filter-btn" data-filter="video">Video</button>
-  <button class="filter-btn" data-filter="podcast">Podcast</button>
-  <button class="filter-btn" data-filter="post">Post</button>
-  <span class="filter-count" id="filter-count">{{ site.data.library | size }} items</span>
+<p class="filter-count" id="filter-count">{{ site.data.library | size }} items</p>
+
+<div class="filter-group">
+  <div class="filter-bar" data-filter-group="type">
+    <span class="filter-bar-label">Format</span>
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="written">Written</button>
+    <button class="filter-btn" data-filter="video">Video</button>
+    <button class="filter-btn" data-filter="podcast">Podcast</button>
+    <button class="filter-btn" data-filter="post">Post</button>
+  </div>
+  <div class="filter-bar" data-filter-group="topic">
+    <span class="filter-bar-label">Topic</span>
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="philosophy">Philosophy</button>
+    <button class="filter-btn" data-filter="finance">Finance</button>
+    <button class="filter-btn" data-filter="ai">AI</button>
+    <button class="filter-btn" data-filter="learning">Learning</button>
+    <button class="filter-btn" data-filter="leadership">Leadership</button>
+  </div>
 </div>
 
 {% for entry in site.data.library %}
-<div class="library-entry" data-type="{{ entry.type | downcase }}">
-  <div class="entry-top">
+<div class="library-entry" data-type="{{ entry.type | downcase }}" data-topic="{{ entry.topic | downcase }}">
+  <div class="entry-title-row">
+    <a class="entry-title" href="{{ entry.url }}" target="_blank" rel="noopener noreferrer">{{ entry.title }}</a>
     <span class="entry-badge">{{ entry.type }}</span>
-    <span class="entry-num">{{ forloop.index | prepend: "00" | slice: -3, 3 }}</span>
   </div>
-  <a class="entry-title" href="{{ entry.url }}" target="_blank" rel="noopener noreferrer">
-    {{ entry.title }}
-  </a>
   <div class="entry-meta">{{ entry.source }}{% if entry.author %} — {{ entry.author }}{% endif %}</div>
   {% if entry.note %}
     <p class="entry-note">{{ entry.note }}</p>
@@ -222,30 +240,46 @@ permalink: /library/
 </div>
 {% endfor %}
 
-<p class="no-results" id="no-results">No entries in this category yet.</p>
+<p class="no-results" id="no-results">No entries match this filter.</p>
 
 <script>
-  const btns = document.querySelectorAll('.filter-btn');
-  const entries = document.querySelectorAll('.library-entry');
+  const typeBar   = document.querySelector('[data-filter-group="type"]');
+  const topicBar  = document.querySelector('[data-filter-group="topic"]');
+  const entries   = document.querySelectorAll('.library-entry');
   const noResults = document.getElementById('no-results');
-  const countEl = document.getElementById('filter-count');
+  const countEl   = document.getElementById('filter-count');
 
-  btns.forEach(btn => {
+  let activeType  = 'all';
+  let activeTopic = 'all';
+
+  function applyFilters() {
+    let visible = 0;
+    entries.forEach(entry => {
+      const typeMatch  = activeType  === 'all' || entry.dataset.type  === activeType;
+      const topicMatch = activeTopic === 'all' || entry.dataset.topic === activeTopic;
+      const show = typeMatch && topicMatch;
+      entry.classList.toggle('hidden', !show);
+      if (show) visible++;
+    });
+    countEl.textContent = visible + ' item' + (visible !== 1 ? 's' : '');
+    noResults.style.display = visible === 0 ? 'block' : 'none';
+  }
+
+  typeBar.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      btns.forEach(b => b.classList.remove('active'));
+      typeBar.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
+      activeType = btn.dataset.filter;
+      applyFilters();
+    });
+  });
 
-      const filter = btn.dataset.filter;
-      let visible = 0;
-
-      entries.forEach(entry => {
-        const match = filter === 'all' || entry.dataset.type === filter;
-        entry.classList.toggle('hidden', !match);
-        if (match) visible++;
-      });
-
-      countEl.textContent = visible + ' item' + (visible !== 1 ? 's' : '');
-      noResults.style.display = visible === 0 ? 'block' : 'none';
+  topicBar.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      topicBar.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeTopic = btn.dataset.filter;
+      applyFilters();
     });
   });
 </script>
