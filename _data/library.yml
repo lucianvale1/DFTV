@@ -1,15 +1,27 @@
 - title: "How to Do Great Work"
   type: written
-  topic: learning
+  topic: 
   url: "https://paulgraham.com/greatwork.html"
-  source: 
   author: Paul Graham
-  note: Long, but every section lands. The most actionable thing I've read on ambition, curiosity, and what it actually takes to produce work that matters.
+  note:
 
 - title: "Sam Altman — How to Be Successful"
   type: written
-  topic: finance
+  topic: 
   url: "https://blog.samaltman.com/how-to-be-successful"
-  source: 
   author: Sam Altman
-  note: Thirteen observations from someone who's seen thousands of people try. No fluff, no narrative — just the patterns that separate the people who make it from the ones who almost do.
+  note:
+
+- title: "How to Time Travel"
+  type: written
+  topic: 
+  url: "https://medium.com/@bchesky/how-to-time-travel-b604096d5ed0"
+  author: Brian Chesky
+  note:
+
+- title: "Steve Jobs' 2005 Stanford Commencement Address"
+  type: video
+  topic: 
+  url: "https://www.youtube.com/watch?v=UF8uR6Z6KLc"
+  author: Steve Jobs
+  note:
