@@ -1,63 +1,15 @@
-- title: "The Feynman Technique"
-  type: written
-  topic: learning
-  url: "https://fs.blog/feynman-technique/"
-  source: Farnam Street
-  author: Shane Parrish
-  note: If you can't explain it simply, you don't understand it. This piece reframed how I think about learning — and exposed how often I mistake familiarity for comprehension.
-
-- title: "This Is Water"
-  type: written
-  topic: philosophy
-  url: "https://fs.blog/david-foster-wallace-this-is-water/"
-  source: Farnam Street / David Foster Wallace
-  author: David Foster Wallace
-  note: The most important thing I've read about awareness and choice. Not what you think it is.
-
-- title: "The Tail End"
-  type: written
-  topic: philosophy
-  url: "https://waitbutwhy.com/2015/12/the-tail-end.html"
-  source: Wait But Why
-  author: Tim Urban
-  note: A visual argument for how finite the things you love actually are. Changed how I think about time with people.
-
-- title: "Naval on Wealth and Happiness"
-  type: podcast
-  topic: finance
-  url: "https://nav.al/podcast"
-  source: The Tim Ferriss Show
-  author: Naval Ravikant
-  note: The clearest distillation of how to think about building wealth without sacrificing your life. Specific, honest, and not what most people mean when they say "success."
-
-- title: "Lex Fridman & Andrej Karpathy on AI"
-  type: podcast
-  topic: ai
-  url: "https://www.youtube.com/watch?v=cdiD-9MMpb0"
-  source: Lex Fridman Podcast
-  author: Lex Fridman & Andrej Karpathy
-  note: Karpathy thinks about AI the way physicists think about the universe — from first principles. This conversation covers what intelligence actually is and where we're headed.
-
 - title: "How to Do Great Work"
   type: written
   topic: learning
   url: "https://paulgraham.com/greatwork.html"
-  source: Paul Graham
+  source: 
   author: Paul Graham
   note: Long, but every section lands. The most actionable thing I've read on ambition, curiosity, and what it actually takes to produce work that matters.
-
-- title: "Jocko Willink on Discipline and Leadership"
-  type: video
-  topic: leadership
-  url: "https://www.youtube.com/watch?v=pqObHjulqmk"
-  source: YouTube
-  author: Jocko Willink
-  note: Extreme Ownership isn't a metaphor. This talk is a field manual for taking responsibility in any system — military, business, or personal.
 
 - title: "Sam Altman — How to Be Successful"
   type: written
   topic: finance
   url: "https://blog.samaltman.com/how-to-be-successful"
-  source: Sam Altman's Blog
+  source: 
   author: Sam Altman
   note: Thirteen observations from someone who's seen thousands of people try. No fluff, no narrative — just the patterns that separate the people who make it from the ones who almost do.

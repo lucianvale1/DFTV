@@ -98,16 +98,10 @@ permalink: /library/
   .library-entry {
     padding: 1.6rem 0;
     border-bottom: 1px solid rgba(189, 71, 0, 0.2);
-    box-shadow: inset 3px 0 0 0 transparent;
-    transition: box-shadow 0.2s ease;
   }
 
   .library-entry:last-of-type {
     border-bottom: none;
-  }
-
-  .library-entry:hover {
-    box-shadow: inset 3px 0 0 0 var(--accent);
   }
 
   .library-entry.hidden {
@@ -134,21 +128,13 @@ permalink: /library/
     flex: 1;
   }
 
-  .entry-title:hover {
+  .library-entry:hover .entry-title {
     color: var(--accent);
   }
 
   .entry-badge {
-    font-family: var(--mono);
-    font-size: 0.5rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--accent);
-    border: 1px solid rgba(255, 68, 0, 0.4);
-    padding: 0.18rem 0.5rem;
     white-space: nowrap;
     flex-shrink: 0;
-    line-height: 1;
     align-self: center;
   }
 
@@ -229,7 +215,7 @@ permalink: /library/
 <div class="library-entry" data-type="{{ entry.type | downcase }}" data-topic="{{ entry.topic | downcase }}">
   <div class="entry-title-row">
     <a class="entry-title" href="{{ entry.url }}" target="_blank" rel="noopener noreferrer">{{ entry.title }}</a>
-    <span class="entry-badge">{{ entry.type }}</span>
+    <span class="tag entry-badge">{{ entry.type }}</span>
   </div>
   <div class="entry-meta">{{ entry.source }}{% if entry.author %} — {{ entry.author }}{% endif %}</div>
   {% if entry.note %}
